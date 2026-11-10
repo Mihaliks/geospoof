@@ -150,7 +150,7 @@ describe("Chromium manifest structure", () => {
     // Chromium overrides the name AND description with literal strings for the
     // Chrome Web Store listing (Firefox/Safari keep the localized __MSG_*__
     // references).
-    expect(m.name).toBe("GeoSpoof: Spoof Geolocation & Timezone");
+    expect(m.name).toBe("MiLocation: Spoof Geolocation & Timezone");
     expect(m.description).toBe(
       "Spoof geolocation, fake your GPS location & timezone — change your location to any city or sync it to your VPN. No account."
     );
@@ -203,10 +203,10 @@ describe("Shared fields preservation", () => {
 
   // `name` intentionally diverges: Chromium overrides it with a literal
   // keyword-rich string for the Chrome Web Store listing, while Firefox keeps
-  // the localized `__MSG_extensionName__` reference (→ "GeoSpoof" on AMO).
+  // the localized `__MSG_extensionName__` reference (→ "MiLocation" on AMO).
   test("name diverges — Firefox localized, Chromium literal", () => {
     expect(firefoxManifest().name).toBe("__MSG_extensionName__");
-    expect(chromiumManifest().name).toBe("GeoSpoof: Spoof Geolocation & Timezone");
+    expect(chromiumManifest().name).toBe("MiLocation: Spoof Geolocation & Timezone");
   });
 
   // `description` intentionally diverges: Chromium overrides it with a literal

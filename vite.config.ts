@@ -1,8 +1,10 @@
 /// <reference types="node" />
 import { defineConfig, loadEnv, type Plugin } from "vite";
 import { resolve } from "path";
-import { cpSync, existsSync, readFileSync, writeFileSync } from "fs";
+import { cpSync, existsSync, readFileSync, writeFileSync, mkdirSync } from "fs";
 import { build as esbuild } from "esbuild";
+import { createHash } from "node:crypto";
+import geoTzData from "./src/shared/geo-tz-data.json" with { type: "json" };
 import {
   generateManifest,
   resolveBrowserTarget,
@@ -119,6 +121,34 @@ function browserTargetPlugin(target: BrowserTarget): Plugin {
       if (existsSync(siteGroupsSrc)) {
         cpSync(siteGroupsSrc, resolve(__dirname, "dist/site-groups"), { recursive: true });
       }
+
+      // MiLocation: package complete timezone geometry and a local catalog pointer.
+      const geoPackage = resolve(__dirname, "node_modules/geo-tz");
+      const dataVersion = JSON.parse(
+        readFileSync(resolve(geoPackage, "package.json"), "utf8")
+      ).version;
+      if (dataVersion !== geoTzData.version) throw new Error("Timezone data version mismatch");
+      const dataOut = resolve(__dirname, `dist/geo-tz/${geoTzData.version}`);
+      mkdirSync(dataOut, { recursive: true });
+      for (const name of ["timezones.geojson.geo.dat", "timezones.geojson.index.json"]) {
+        cpSync(resolve(geoPackage, "data", name), resolve(dataOut, name));
+      }
+      cpSync(resolve(geoPackage, "LICENSE.md"), resolve(dataOut, "LICENSE.md"));
+      const catalogBytes = readFileSync(resolve(siteGroupsSrc, "catalog.json"));
+      const catalog = JSON.parse(catalogBytes.toString("utf8"));
+      const catalogPath = `site-groups/v1/catalog-${catalog.release}.json`;
+      mkdirSync(resolve(__dirname, "dist/site-groups/v1"), { recursive: true });
+      writeFileSync(resolve(__dirname, "dist", catalogPath), catalogBytes);
+      writeFileSync(
+        resolve(__dirname, "dist/site-groups/v1/latest.json"),
+        JSON.stringify({
+          format: 1,
+          release: catalog.release,
+          path: catalogPath,
+          sha256: createHash("sha256").update(catalogBytes).digest("hex"),
+          bytes: catalogBytes.length,
+        })
+      );
 
       // Copy icons directory
       const iconsSrc = resolve(__dirname, "icons");

@@ -210,7 +210,7 @@ export async function adoptPendingSettingsFromApp(): Promise<void> {
 
   let response: PendingResponse | undefined;
   try {
-    response = (await browser.runtime.sendNativeMessage("com.moonloaf.geospoof", {
+    response = (await browser.runtime.sendNativeMessage("com.mihaliks.MiLocation", {
       type: "GET_PENDING_SETTINGS",
       // Spread rather than assigned, so a field the engine couldn't answer is absent from
       // the message entirely. The handler treats absent as "no answer" and leaves the

@@ -42,24 +42,26 @@ function context(overrides: Partial<ActivationMessageContext> = {}): ActivationM
 }
 
 describe("activation page boundary", () => {
-  it("allows only the two first-party production hosts", () => {
-    expect(isActivationPage("https://geospoof.com", "/activate", true)).toBe(true);
-    expect(isActivationPage("https://www.geospoof.com", "/activate", true)).toBe(true);
-    expect(isActivationPage("http://geospoof.com", "/activate", true)).toBe(false);
-    expect(isActivationPage("https://activate.geospoof.com", "/activate", true)).toBe(false);
-    expect(isActivationPage("https://geospoof.com.evil.example", "/activate", true)).toBe(false);
-  });
-
-  it("allows only the dedicated route in the top frame", () => {
-    expect(isActivationPage("https://geospoof.com", "/activate/", true)).toBe(true);
-    expect(isActivationPage("https://geospoof.com", "/de/activate", true)).toBe(true);
-    expect(isActivationPage("https://geospoof.com", "/pt-BR/activate/", true)).toBe(true);
-    expect(isActivationPage("https://geospoof.com", "/zh-TW/activate", true)).toBe(true);
-    expect(isActivationPage("https://geospoof.com", "/zh-tw/activate", true)).toBe(false);
-    expect(isActivationPage("https://geospoof.com", "/en/activate", true)).toBe(false);
-    expect(isActivationPage("https://geospoof.com", "/de/other/activate", true)).toBe(false);
-    expect(isActivationPage("https://geospoof.com", "/verify", true)).toBe(false);
-    expect(isActivationPage("https://geospoof.com", "/activate", false)).toBe(false);
+  it("never exposes activation to the upstream author's production hosts", () => {
+    for (const origin of [
+      "https://geospoof.com",
+      "https://www.geospoof.com",
+      "http://geospoof.com",
+      "https://activate.geospoof.com",
+      "https://geospoof.com.evil.example",
+    ]) {
+      for (const path of [
+        "/activate",
+        "/activate/",
+        "/de/activate",
+        "/pt-BR/activate/",
+        "/zh-TW/activate",
+        "/verify",
+      ]) {
+        expect(isActivationPage(origin, path, true)).toBe(false);
+        expect(isActivationPage(origin, path, false)).toBe(false);
+      }
+    }
   });
 
   it("allows exact loopback origins only when the development gate is on", () => {
@@ -75,7 +77,15 @@ describe("activation page boundary", () => {
 
 describe("activation response", () => {
   it("returns the nonce-bound, data-minimal readiness message", () => {
-    expect(activationResponseFor(context())).toEqual({
+    expect(
+      activationResponseFor(
+        context({
+          pageOrigin: "http://127.0.0.1:3000",
+          eventOrigin: "http://127.0.0.1:3000",
+          allowDevelopmentOrigins: true,
+        })
+      )
+    ).toEqual({
       source: ACTIVATION_EXTENSION_SOURCE,
       type: ACTIVATION_READY_TYPE,
       protocolVersion: ACTIVATION_PROTOCOL_VERSION,

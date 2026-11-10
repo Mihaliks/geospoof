@@ -44,8 +44,8 @@ export function generateManifest(target: BrowserTarget, version: string): Record
     name: "__MSG_extensionName__",
     description: "__MSG_extensionDescription__",
     default_locale: "en",
-    author: "GeoSpoof LLC",
-    homepage_url: "https://github.com/GeoSpoof/geospoof",
+    author: "Mihaliks (fork of GeoSpoof LLC)",
+    homepage_url: "https://github.com/Mihaliks/geospoof",
     incognito: "spanning",
     version,
     // `proxy` powers the VPN-sync auto-resync watcher: GeoSpoof observes
@@ -141,25 +141,9 @@ export function generateManifest(target: BrowserTarget, version: string): Record
     optional_permissions: ["userScripts"],
     browser_specific_settings: {
       gecko: {
-        id: "{a8f7e9c2-4d3b-4a1e-9f8c-7b6d5e4a3c2b}",
+        id: "{c89422a8-e513-47bd-a97b-3935f11ac3d7}",
         strict_min_version: "140.0",
-        // THIS URL IS EFFECTIVELY PERMANENT ONCE SHIPPED, so it deliberately
-        // names a domain we own rather than a github.io path.
-        //
-        // Firefox keeps polling whatever update_url was compiled into the copy a
-        // user installed; an existing install CANNOT be told about a new one. So
-        // changing this only affects future installs and whoever updates through
-        // the OLD url first. It reached the wrong host historically
-        // (anthonysgro.github.io/geospoof/update.json, served from gh-pages),
-        // which tied every self-hosted install's update path to a personal GitHub
-        // username - and GitHub does not redirect Pages when a repo is
-        // transferred, so moving the repo would have stranded those installs
-        // silently, a failed update check being invisible to the user.
-        //
-        // Both URLs are published during the migration; see the release workflow.
-        // The AMO-listed build has this key stripped entirely, so AMO users never
-        // consult it.
-        update_url: "https://cdn.geospoof.com/firefox/update.json",
+        // MiLocation never checks the upstream auto-update feed.
         data_collection_permissions: {
           required: ["none"],
         },
@@ -380,7 +364,7 @@ export function generateManifest(target: BrowserTarget, version: string): Record
     // - The long/detailed listing description lives in the Web Store Developer
     //   Dashboard (no manifest field exists for it); see
     //   assets/store-listings/listing-copy.md.
-    name: "GeoSpoof: Spoof Geolocation & Timezone",
+    name: "MiLocation: Spoof Geolocation & Timezone",
     description:
       "Spoof geolocation, fake your GPS location & timezone — change your location to any city or sync it to your VPN. No account.",
     background: {

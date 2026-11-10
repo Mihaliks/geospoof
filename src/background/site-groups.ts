@@ -95,9 +95,10 @@ export const SITE_GROUP_FULL_KEY = "siteGroupFull";
 /** The weekly refresh alarm. */
 export const SITE_GROUPS_REFRESH_ALARM = "site-groups-refresh";
 /** The release pointer. Fetched with `cache: "no-cache"`. */
-export const SITE_GROUPS_POINTER_URL = "https://cdn.geospoof.com/site-groups/v1/latest.json";
+// MiLocation fork: releases update the catalog; runtime refreshes read the package.
+export const SITE_GROUPS_POINTER_URL = browser.runtime.getURL("site-groups/v1/latest.json");
 /** Where a pointer's `path` is resolved. */
-const CDN_ORIGIN = "https://cdn.geospoof.com/";
+const CATALOG_BASE = browser.runtime.getURL("");
 /** The bundled catalog, relative to the extension root. */
 export const BUNDLED_CATALOG_PATH = "site-groups/catalog.json";
 
@@ -244,7 +245,8 @@ type FetchBytesResult =
 async function fetchBytes(
   url: string,
   cache: RequestCache,
-  cap: number
+  cap: number,
+  packaged = false
 ): Promise<FetchBytesResult> {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
@@ -255,7 +257,10 @@ async function fetchBytes(
       redirect: "follow",
       signal: controller.signal,
     });
-    if (!response.ok || !isHttpsUrl(response.url)) {
+    if (
+      !response.ok ||
+      (packaged ? !url.startsWith(CATALOG_BASE) || response.url !== url : !isHttpsUrl(response.url))
+    ) {
       controller.abort();
       return { ok: false, reason: "NETWORK" };
     }
@@ -393,7 +398,7 @@ async function sha256Hex(bytes: Uint8Array<ArrayBuffer>): Promise<string> {
 async function fetchPointer(): Promise<
   { ok: true; pointer: CatalogPointer } | { ok: false; error: RefreshError }
 > {
-  const download = await fetchBytes(SITE_GROUPS_POINTER_URL, "no-cache", MAX_POINTER_BYTES);
+  const download = await fetchBytes(SITE_GROUPS_POINTER_URL, "no-cache", MAX_POINTER_BYTES, true);
   if (!download.ok)
     return { ok: false, error: download.reason === "NETWORK" ? "NETWORK" : "INVALID" };
   let pointer: CatalogPointer | null;
@@ -409,7 +414,12 @@ async function fetchPointer(): Promise<
 async function downloadCatalog(
   pointer: CatalogPointer
 ): Promise<{ ok: true; catalog: SiteGroupCatalog } | { ok: false; error: RefreshError }> {
-  const download = await fetchBytes(`${CDN_ORIGIN}${pointer.path}`, "default", MAX_CATALOG_BYTES);
+  const download = await fetchBytes(
+    `${CATALOG_BASE}${pointer.path}`,
+    "default",
+    MAX_CATALOG_BYTES,
+    true
+  );
   if (!download.ok)
     return { ok: false, error: download.reason === "NETWORK" ? "NETWORK" : "INVALID" };
   if ((await sha256Hex(download.bytes)) !== pointer.sha256) {

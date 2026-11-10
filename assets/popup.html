@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=350, initial-scale=1" />
-    <title>GeoSpoof</title>
+    <title>MiLocation</title>
     <link rel="stylesheet" href="popup.css" />
   </head>
   <body>
@@ -11,7 +11,7 @@
       <!-- Onboarding Overlay -->
       <div class="onboarding-overlay" id="onboardingOverlay" style="display: none">
         <div class="onboarding-content">
-          <h2 data-i18n="onboarding_title">Welcome to GeoSpoof! 🌍</h2>
+          <h2 data-i18n="onboarding_title">Welcome to MiLocation! 🌍</h2>
           <div class="onboarding-steps">
             <div class="onboarding-step">
               <div class="step-number">1</div>
@@ -45,21 +45,21 @@
         </div>
       </div>
 
-      <!-- "Love GeoSpoof?" review modal -->
+      <!-- "Love MiLocation?" review modal -->
       <div class="onboarding-overlay" id="reviewOverlay" style="display: none">
         <div class="onboarding-content review-modal">
-          <h2 data-i18n="review_modal_title">Love GeoSpoof? ❤️</h2>
+          <h2 data-i18n="review_modal_title">Love MiLocation? ❤️</h2>
           <p class="review-modal-text" id="reviewModalBody1" data-i18n="review_modal_body1">
-            GeoSpoof is built with care — no tracking, no accounts. I build and maintain it on my
+            MiLocation is built with care — no tracking, no accounts. I build and maintain it on my
             own time.
           </p>
           <p class="review-modal-text" data-i18n="review_modal_body2">
             A quick review is the single best way to support it. It takes a minute and helps more
-            people find GeoSpoof. Thank you so much!
+            people find MiLocation. Thank you so much!
           </p>
           <a
             id="reviewCtaLink"
-            href="https://chromewebstore.google.com/detail/geospoof/dgdbdodafgaeifgajaajohkjjgobcgje/reviews?utm_source=extension&amp;utm_medium=popup&amp;utm_campaign=ext-popup"
+            href="https://github.com/Mihaliks/geospoof"
             target="_blank"
             class="onboarding-button review-modal-cta"
             data-i18n="review_modal_cta"
@@ -78,8 +78,8 @@
       <!-- Header -->
       <div class="header">
         <div class="header-title">
-          <img src="../icons/icon-48.png" alt="GeoSpoof icon" class="header-icon" />
-          <h1>GeoSpoof</h1>
+          <img src="../icons/icon-48.png" alt="MiLocation icon" class="header-icon" />
+          <h1>MiLocation</h1>
         </div>
         <!-- Right side of the header. Grouping the badge and the gear keeps the
              header's `justify-content: space-between` working with two children:
@@ -435,7 +435,7 @@
         <!-- Footer links -->
         <div class="support-link">
           <a
-            href="https://www.geospoof.com/support?utm_source=extension&amp;utm_medium=popup&amp;utm_campaign=support"
+            href="https://github.com/Mihaliks/geospoof"
             target="_blank"
             class="help-link"
             data-i18n="support_needHelp"
@@ -444,7 +444,7 @@
           >
           <span class="test-links-separator">•</span>
           <a
-            href="https://www.geospoof.com/verify?utm_source=extension&amp;utm_medium=popup&amp;utm_campaign=verify"
+            href="https://browserleaks.com/javascript"
             target="_blank"
             class="help-link"
             data-i18n="testLinks_verify"
@@ -453,7 +453,7 @@
           >
           <span class="test-links-separator">•</span>
           <a href="#" class="help-link" id="reviewLink" role="button" data-i18n="support_review"
-            >Love GeoSpoof?</a
+            >Love MiLocation?</a
           >
         </div>
 
@@ -475,7 +475,7 @@
                satisfies Label in Name (WCAG 2.5.3) by construction. -->
           <a
             id="iosPromoLink"
-            href="https://apps.apple.com/app/apple-store/id6765719745?pt=128299974&amp;ct=ext-popup-footer&amp;mt=8"
+            href="https://github.com/Mihaliks/geospoof"
             target="_blank"
             rel="noopener"
             class="help-link"
@@ -492,7 +492,7 @@
                 d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"
               />
             </svg>
-            <span data-i18n="iosPromo_text">Change your iPhone&#39;s real GPS with GeoSpoof</span>
+            <span data-i18n="iosPromo_text">Change your iPhone&#39;s real GPS with MiLocation</span>
           </a>
           <!-- Proton VPN cross-link. Hidden by default; revealed at runtime
                only for non-Apple OSes (see popup/index.ts). Points at our own
@@ -503,7 +503,7 @@
                attributes to the popup footer. -->
           <a
             id="vpnPromoLink"
-            href="https://www.geospoof.com/vpn?utm_source=extension&amp;utm_medium=popup&amp;utm_campaign=popup-footer"
+            href="https://github.com/Mihaliks/geospoof"
             target="_blank"
             rel="noopener"
             class="help-link"
@@ -550,10 +550,10 @@
            (src/popup/filters-nav.ts). Each screen's back row names the
            screen it returns to. -->
       <div class="tab-content" id="filtersView" style="display: none">
-        <!-- Root: This site, then where GeoSpoof works (the mode, its sentence
+        <!-- Root: This site, then where MiLocation works (the mode, its sentence
              and the active list's row), then Per-site locations in a group of
              their own.
-             Filters decide WHETHER GeoSpoof is on for a site; a site location
+             Filters decide WHETHER MiLocation is on for a site; a site location
              decides WHICH location it reports there. -->
         <div class="filters-screen" id="filtersRoot">
           <div
@@ -741,14 +741,14 @@
           </div>
 
           <div class="scope-mode-desc" id="scopeModeDesc" data-i18n="filters_descAll">
-            GeoSpoof works on every site.
+            MiLocation works on every site.
           </div>
 
           <!-- The one Pro note (non-Pro iOS users), in place of the sentence.
                The locked Per-site row is described by it. -->
           <div class="pro-lock-note" id="scopeProNote" data-i18n="siteLocation_proNote" hidden>
-            🔒 Allowlist, Denylist and per-site locations are GeoSpoof Pro features. Upgrade in the
-            GeoSpoof app.
+            🔒 Allowlist, Denylist and per-site locations are MiLocation Pro features. Upgrade in
+            the MiLocation app.
           </div>
 
           <div
@@ -915,7 +915,7 @@
                 </p>
                 <a
                   class="scope-syntax-reference"
-                  href="https://github.com/GeoSpoof/geospoof/blob/main/docs/SITE_FILTERS.md"
+                  href="https://github.com/MiLocation/geospoof/blob/main/docs/SITE_FILTERS.md"
                   target="_blank"
                   rel="noopener noreferrer"
                   data-i18n="filters_syntaxReference"
@@ -1348,7 +1348,7 @@
               data-i18n="settings_proNote"
               hidden
             >
-              🔒 The settings in this section are GeoSpoof Pro features. Upgrade in the GeoSpoof
+              🔒 The settings in this section are MiLocation Pro features. Upgrade in the MiLocation
               app.
             </p>
             <div class="toggle-group" id="settingsLocationCard">
@@ -1473,12 +1473,12 @@
                 data-i18n="preserveGeoPrompt_tooltip"
                 hidden
               >
-                When on, the browser asks before a site GeoSpoof is on for gets your spoofed
+                When on, the browser asks before a site MiLocation is on for gets your spoofed
                 location.
               </p>
             </div>
             <!-- Reported Language. Named to stay clearly distinct from the
-                 "Language" row under General, which sets GeoSpoof's OWN UI
+                 "Language" row under General, which sets MiLocation's OWN UI
                  language; this one sets what WEBSITES see. -->
             <div class="toggle-group" id="settingsLanguageCard">
               <label class="value-row" for="localeSelect">
@@ -1672,12 +1672,12 @@
                   ×
                 </button>
                 <span data-i18n="debuggerBannerHelp_text"
-                  >While this is on, Chrome shows a “GeoSpoof started debugging this browser” bar.
+                  >While this is on, Chrome shows a “MiLocation started debugging this browser” bar.
                   To hide it, start Chrome with this flag:</span
                 >
                 <code class="debugger-banner-help-flag">--silent-debugger-extension-api</code>
                 <a
-                  href="https://geospoof.com/engine-level-spoofing?utm_source=extension&amp;utm_medium=popup&amp;utm_campaign=engine-level"
+                  href="https://github.com/Mihaliks/geospoof"
                   target="_blank"
                   rel="noopener"
                   data-i18n="debuggerBannerHelp_link"
@@ -1794,7 +1794,7 @@
             ><span id="coffeeRow"
               ><span class="settings-footer-sep" aria-hidden="true">·</span
               ><a
-                href="https://buymeacoffee.com/sgro"
+                href="https://github.com/Mihaliks/geospoof"
                 target="_blank"
                 class="coffee-link"
                 data-i18n="advanced_coffee"

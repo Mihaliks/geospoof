@@ -607,7 +607,7 @@ async function writeSettingsWithQuotaRetry(settings: Settings): Promise<void> {
 /**
  * Push the current spoofed region to the containing native app via
  * browser.runtime.sendNativeMessage → SafariWebExtensionHandler →
- * UserDefaults(suiteName: "group.com.moonloaf.geospoof").
+ * UserDefaults(suiteName: "group.com.mihaliks.MiLocation").
  *
  * Called after every successful settings save, and without a save through
  * pushRegionNow when the app asks for the region. Non-throwing.
@@ -618,7 +618,7 @@ async function pushRegionToNativeHost(settings: Settings): Promise<void> {
     if (settings.vpnSyncEnabled) {
       ip = (await getLastSyncedIp()) ?? null;
     }
-    await browser.runtime.sendNativeMessage("com.moonloaf.geospoof", {
+    await browser.runtime.sendNativeMessage("com.mihaliks.MiLocation", {
       type: "REGION_UPDATE",
       enabled: settings.enabled,
       locationName: settings.locationName ?? null,

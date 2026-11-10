@@ -101,7 +101,7 @@ describe("regionWanted handshake (design §3.3.1)", () => {
     const pushes = regionPushes();
     expect(pushes).toHaveLength(1);
     expect(JSON.parse(pushes[0].siteLocations as string)).toEqual([ENTRY_DUBLIN]);
-    expect(sendNativeMessage).toHaveBeenCalledWith("com.moonloaf.geospoof", pushes[0]);
+    expect(sendNativeMessage).toHaveBeenCalledWith("com.mihaliks.MiLocation", pushes[0]);
     // A push, not a save.
     expect(mocks.localSet()).not.toHaveBeenCalled();
     expect(stored().lastUpdated).toBe(1);

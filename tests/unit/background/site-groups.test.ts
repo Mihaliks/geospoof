@@ -363,7 +363,7 @@ describe("refreshSiteGroups", () => {
     expect(fetchedUrls(fetchMock)).toEqual(
       expect.arrayContaining([
         POINTER_URL,
-        `https://cdn.geospoof.com/site-groups/v1/catalog-${CATALOG_B.release}.json`,
+        `moz-extension://test/site-groups/v1/catalog-${CATALOG_B.release}.json`,
       ])
     );
     const pointerInit = fetchMock.mock.calls.find((c) => c[0] === POINTER_URL)![1] as RequestInit;

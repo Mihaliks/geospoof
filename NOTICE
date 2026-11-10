@@ -42,3 +42,10 @@ License, Copyright (c) 2018-2019 V2Ray:
     cdn.geospoof.com,
   both converted from the upstream dlc.dat_plain.yml release asset. The MIT
   permission notice above applies to this data.
+
+MiLocation fork, modified 2026-11-10 by Mihaliks: bundled timezone geometry and
+site-group catalog; no GeoSpoof CDN requests; independent Safari macOS host.
+The complete geo-tz data package is included with its MIT license in geo-tz/.
+Timezone boundary data originates from timezone-boundary-builder / OpenStreetMap
+(https://github.com/evansiroky/timezone-boundary-builder), under ODbL 1.0:
+https://opendatacommons.org/licenses/odbl/1-0/

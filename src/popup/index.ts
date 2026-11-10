@@ -12,7 +12,6 @@ import { handleVpnSync } from "./vpn-sync";
 import { wireEarlyProtectionToggle } from "./early-protection";
 import { wireDebuggerModeToggle } from "./debugger-mode";
 import { applyI18n, t, initI18n, resetI18nOverride, browserUiLanguage } from "./i18n";
-import { localizeWebsiteLinks } from "./website-links";
 import { initAccuracyControl } from "./accuracy";
 import { initPrecisionCadenceControl, initPrecisionControl } from "./precision";
 import { initLocaleControl } from "./locale";
@@ -452,9 +451,6 @@ document.getElementById("languageSelect")?.addEventListener("change", (e: Event)
     applyI18n();
     // The back label has no data-i18n (it names the origin tab), so re-render it.
     renderSettingsBackLabel();
-    // Keep the outbound geospoof.com links (Verify, Need help?) pointed at the
-    // just-picked language's page — the effective locale mirrors the text.
-    localizeWebsiteLinks(resolveUiLocale(value, browserUiLanguage()));
     await loadSettings();
   })();
 });
@@ -547,12 +543,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // language override, initPopupSettings() re-applies it below.
   applyI18n();
 
-  // Localize the outbound geospoof.com links (Verify, Need help?) to match this
-  // first, browser-UI-locale pass. With no stored override this is the final
-  // locale; initPopupSettings() re-runs it below when an override is set
-  // (idempotent — it recomputes from the stashed English href).
-  localizeWebsiteLinks(resolveUiLocale(undefined, browserUiLanguage()));
-
   // Fill the Advanced-section language picker from the shared locale list.
   populateLanguageOptions();
 
@@ -605,47 +595,11 @@ document.addEventListener("DOMContentLoaded", () => {
     if (coffeeRow) coffeeRow.style.display = "none";
   }
 
-  // Point the "Love GeoSpoof?" modal CTA at the current platform's store
-  // review flow. Reviews are our biggest growth lever, so the footer link
-  // opens a short personal ask (see the click handlers above) and this button
-  // deep-links straight to the right store. The HTML ships the Chromium URL
-  // as the static default; override it for Safari/Firefox.
-  const reviewCta = document.getElementById("reviewCtaLink") as HTMLAnchorElement | null;
-  if (reviewCta) {
-    if (__SAFARI__) {
-      // App Store: opens the write-a-review composer directly. pt is our
-      // provider token; ct=ext-popup tags this as the in-popup review prompt
-      // so it shows up under Campaigns in App Store Connect → App Analytics.
-      reviewCta.href =
-        "https://apps.apple.com/app/apple-store/id6765719745?action=write-review&pt=128299974&ct=ext-popup";
-    } else if (__FIREFOX__) {
-      reviewCta.href =
-        "https://addons.mozilla.org/firefox/addon/geo-spoof/reviews/?utm_source=extension&utm_medium=popup&utm_campaign=ext-popup";
-    } else {
-      reviewCta.href =
-        "https://chromewebstore.google.com/detail/geospoof/dgdbdodafgaeifgajaajohkjjgobcgje/reviews?utm_source=extension&utm_medium=popup&utm_campaign=ext-popup";
-    }
+  // MiLocation has no upstream store, purchase or affiliate flows.
+  for (const id of ["reviewOverlay", "reviewLink", "iosPromoLink", "vpnPromoLink", "coffeeRow"]) {
+    const node = document.getElementById(id);
+    if (node) node.style.display = "none";
   }
-
-  // Adjust the modal's first line per platform. The default copy speaks to the
-  // desktop builds (Chromium, Firefox, and Safari on macOS); the iOS build is
-  // freemium and gets its own privacy-focused variant. The Safari build ships
-  // to both iOS and macOS from one bundle, so we detect iOS at runtime via the
-  // user agent.
-  const isIOS = __SAFARI__ && /iPhone|iPad|iPod/.test(navigator.userAgent);
-  if (isIOS) {
-    const body1 = document.getElementById("reviewModalBody1");
-    const iosCopy = t("review_modal_body1_ios");
-    if (body1 && iosCopy) body1.textContent = iosCopy;
-  }
-
-  // Footer ecosystem cross-link. Shown on every platform: the App Store is
-  // where GeoSpoof Pro is bought, and Pro is what unlocks device GPS no matter
-  // which desktop build drives it, so the link is relevant even to someone on
-  // Windows or Linux. Its label names only the iPhone and states the outcome,
-  // so it reads correctly on every host OS and needs no runtime narrowing —
-  // see the rationale on the anchor in popup.html. The Proton VPN affiliate
-  // slot (vpnPromoLink) stays hidden.
   void initPopupSettings();
 });
 
@@ -665,9 +619,6 @@ async function initPopupSettings(): Promise<void> {
   if (settings.uiLanguage) {
     await initI18n(resolveUiLocale(settings.uiLanguage, browserUiLanguage()));
     applyI18n();
-    // Re-point the outbound links at the overridden language (the initial
-    // DOMContentLoaded pass used the browser UI locale). Idempotent.
-    localizeWebsiteLinks(resolveUiLocale(settings.uiLanguage, browserUiLanguage()));
   }
 
   await loadSettings(settings);

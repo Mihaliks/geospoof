@@ -518,7 +518,7 @@ describe("Popup Filters tab — the root and the list screen (design H)", () => 
     expect(byId("scopeModeDesc").hidden).toBe(true);
     expect(byId("scopeProNote").hidden).toBe(false);
     expect(byId("scopeProNote").textContent?.replace(/\s+/g, " ").trim()).toBe(
-      "🔒 Allowlist, Denylist and per-site locations are GeoSpoof Pro features. Upgrade in the GeoSpoof app."
+      "🔒 Allowlist, Denylist and per-site locations are MiLocation Pro features. Upgrade in the MiLocation app."
     );
     // The row still opens the Filters screen, which shows the lock and no list.
     expect(byId("scopeListRowValue").textContent).toBe("All sites");

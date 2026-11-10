@@ -7,7 +7,7 @@ import {
 } from "@/shared/activation-protocol";
 
 /** Both hosts are first-party; the AppLink helper currently uses the www host. */
-export const ACTIVATION_ORIGINS = new Set(["https://geospoof.com", "https://www.geospoof.com"]);
+export const ACTIVATION_ORIGINS = new Set<string>();
 
 // Keep this closed to the site's actual localized activation routes. A broad
 // suffix match would unnecessarily expose the responder to unrelated pages.

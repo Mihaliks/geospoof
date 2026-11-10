@@ -1,6 +1,6 @@
 {
   "extensionName": {
-    "message": "GeoSpoof",
+    "message": "MiLocation",
     "description": "Extension name shown in the browser and store listing."
   },
   "extensionDescription": {
@@ -8,7 +8,7 @@
     "description": "Extension description shown in the browser and store listing."
   },
   "onboarding_title": {
-    "message": "Welcome to GeoSpoof! 🌍",
+    "message": "Welcome to MiLocation! 🌍",
     "description": "Onboarding overlay heading."
   },
   "onboarding_step1_strong": {
@@ -57,7 +57,7 @@
   },
   "tab_filters": {
     "message": "Sites",
-    "description": "Tab label for the Sites view (formerly 'Filters'): where GeoSpoof works, this site, and per-site locations. Also the back rows' label (‹ Sites). Use the locale's plain word for websites as a tab name; it shares a word with siteLocation_sitesLabel. The key keeps its old name."
+    "description": "Tab label for the Sites view (formerly 'Filters'): where MiLocation works, this site, and per-site locations. Also the back rows' label (‹ Sites). Use the locale's plain word for websites as a tab name; it shares a word with siteLocation_sitesLabel. The key keeps its old name."
   },
   "tab_settings": {
     "message": "Settings",
@@ -80,7 +80,7 @@
     "description": "Settings screen: heading over the settings about the popup itself (Theme, Language, Debug Logging). Shown in capitals."
   },
   "settings_proNote": {
-    "message": "🔒 The settings in this section are GeoSpoof Pro features. Upgrade in the GeoSpoof app.",
+    "message": "🔒 The settings in this section are MiLocation Pro features. Upgrade in the MiLocation app.",
     "description": "Shown under the WHAT SITES SEE heading for non-Pro iOS users, whose settings in that section are locked; every locked row is described by it. The second sentence is siteLocation_proNote's second sentence, word for word."
   },
   "details_section_locale": {
@@ -93,7 +93,7 @@
   },
   "filters_where": {
     "message": "Filter mode",
-    "description": "Section heading above the three mode segments (All sites, Allowlist, Denylist) on the Sites tab. Shown uppercase by the style. Names the radiogroup for screen readers. Formerly \"Where GeoSpoof works\"."
+    "description": "Section heading above the three mode segments (All sites, Allowlist, Denylist) on the Sites tab. Shown uppercase by the style. Names the radiogroup for screen readers. Formerly \"Where MiLocation works\"."
   },
   "filters_screenTitle": {
     "message": "Filters",
@@ -105,7 +105,7 @@
   },
   "filters_modeAll": {
     "message": "All sites",
-    "description": "Scope mode segment: GeoSpoof works on every site."
+    "description": "Scope mode segment: MiLocation works on every site."
   },
   "filters_modeAllowlist": {
     "message": "Allowlist",
@@ -116,15 +116,15 @@
     "description": "Scope mode option: spoof on every site except listed ones."
   },
   "filters_descAll": {
-    "message": "GeoSpoof works on every site.",
+    "message": "MiLocation works on every site.",
     "description": "Sentence under the scope-mode selector in All sites mode. Describes the setting, stated positively with 'works'; it doesn't change with the site."
   },
   "filters_descAllow": {
-    "message": "GeoSpoof works only on sites in the Allowlist.",
+    "message": "MiLocation works only on sites in the Allowlist.",
     "description": "Sentence under the scope-mode selector in Allowlist mode. 'Allowlist' is the list's name, as filters_allowlistName has it."
   },
   "filters_descDeny": {
-    "message": "GeoSpoof works on every site except those in the Denylist.",
+    "message": "MiLocation works on every site except those in the Denylist.",
     "description": "Sentence under the scope-mode selector in Denylist mode. 'Denylist' is the list's name, as filters_denylistName has it."
   },
   "filters_allowlistName": {
@@ -187,11 +187,11 @@
   },
   "filters_valueOff": {
     "message": "Off",
-    "description": "The This site card's value when GeoSpoof is off on the current page (Location Protection off, or Filters keep it off). One word, like Safari's per-site values."
+    "description": "The This site card's value when MiLocation is off on the current page (Location Protection off, or Filters keep it off). One word, like Safari's per-site values."
   },
   "filters_valueNotSet": {
     "message": "Not set",
-    "description": "The This site card's value when GeoSpoof is on for the current page but no location is set (no main location and no per-site location)."
+    "description": "The This site card's value when MiLocation is on for the current page but no location is set (no main location and no per-site location)."
   },
   "filters_openMainAria": {
     "message": "Opens the Main tab",
@@ -327,14 +327,14 @@
   },
   "toggle_preserveGeoPrompt": {
     "message": "Preserve location prompts",
-    "description": "Label for the toggle that makes GeoSpoof show the browser's native geolocation permission prompt (and only substitute the spoofed location after the user allows) instead of silently auto-granting it to every site."
+    "description": "Label for the toggle that makes MiLocation show the browser's native geolocation permission prompt (and only substitute the spoofed location after the user allows) instead of silently auto-granting it to every site."
   },
   "preserveGeoPrompt_infoAriaLabel": {
     "message": "More info about Preserve location prompts",
     "description": "Accessible label on the Preserve location prompts info icon."
   },
   "preserveGeoPrompt_tooltip": {
-    "message": "When on, the browser asks before a site GeoSpoof is on for gets your spoofed location.",
+    "message": "When on, the browser asks before a site MiLocation is on for gets your spoofed location.",
     "description": "Shown when the ⓘ next to Preserve location prompts is opened: when on, the browser's permission prompt appears before a site in spoofing scope receives the spoofed location."
   },
   "heading_location": {
@@ -476,16 +476,16 @@
     "description": "Footer link prompting the user to open the support page."
   },
   "support_review": {
-    "message": "Love GeoSpoof?",
+    "message": "Love MiLocation?",
     "description": "Footer link that opens a short modal asking the user to leave a store review."
   },
   "iosPromo_text": {
-    "message": "Change your iPhone's real GPS with GeoSpoof",
-    "description": "Footer cross-link to the GeoSpoof app on the App Store. Leads with what the app does - move the iPhone's real, system-level GPS - rather than with the product name, because the name alone does not say what you get. Names no desktop platform on purpose: the Mac and Windows companions are discovered on the store page, and leaving them out keeps the label on one line at the popup's 350px width."
+    "message": "Change your iPhone's real GPS with MiLocation",
+    "description": "Footer cross-link to the MiLocation app on the App Store. Leads with what the app does - move the iPhone's real, system-level GPS - rather than with the product name, because the name alone does not say what you get. Names no desktop platform on purpose: the Mac and Windows companions are discovered on the store page, and leaving them out keeps the label on one line at the popup's 350px width."
   },
   "vpnPromo_text": {
     "message": "Pair with Proton VPN",
-    "description": "Footer cross-link inviting the user to pair GeoSpoof with Proton VPN (a disclosed affiliate recommendation); shown on non-Apple operating systems (Windows/Linux/Android/ChromeOS) in place of the Apple App Store link. Points at the on-site /vpn recommendation page."
+    "description": "Footer cross-link inviting the user to pair MiLocation with Proton VPN (a disclosed affiliate recommendation); shown on non-Apple operating systems (Windows/Linux/Android/ChromeOS) in place of the Apple App Store link. Points at the on-site /vpn recommendation page."
   },
   "vpnPromo_ariaLabel": {
     "message": "Pair with Proton VPN (ad)",
@@ -496,19 +496,19 @@
     "description": "Small inline marker disclosing that the adjacent Proton VPN link is an affiliate link."
   },
   "review_modal_title": {
-    "message": "Love GeoSpoof? ❤️",
+    "message": "Love MiLocation? ❤️",
     "description": "Heading of the modal that asks the user to leave a review."
   },
   "review_modal_body1": {
-    "message": "GeoSpoof is built with care — no tracking, no accounts. I build and maintain it on my own time.",
+    "message": "MiLocation is built with care — no tracking, no accounts. I build and maintain it on my own time.",
     "description": "First paragraph of the review-request modal (desktop builds)."
   },
   "review_modal_body1_ios": {
-    "message": "GeoSpoof is built with love — no tracking, no accounts. I work on it in my own time to keep your location private.",
+    "message": "MiLocation is built with love — no tracking, no accounts. I work on it in my own time to keep your location private.",
     "description": "First paragraph of the review-request modal on iOS, where the app is freemium so it does not claim to be free."
   },
   "review_modal_body2": {
-    "message": "A quick review is the single best way to support it. It takes a minute and helps more people find GeoSpoof. Thank you so much!",
+    "message": "A quick review is the single best way to support it. It takes a minute and helps more people find MiLocation. Thank you so much!",
     "description": "Second paragraph of the review-request modal."
   },
   "review_modal_cta": {
@@ -678,12 +678,12 @@
     "description": "Shown when the ⓘ next to Engine-level Spoofing (Chrome only) is opened. Must stay within docs/API.md: it reaches more workers and frames than standard protection, not all of them."
   },
   "debuggerBannerHelp_text": {
-    "message": "While this is on, Chrome shows a “GeoSpoof started debugging this browser” bar. To hide it, start Chrome with this flag:",
+    "message": "While this is on, Chrome shows a “MiLocation started debugging this browser” bar. To hide it, start Chrome with this flag:",
     "description": "Intro text of the dismissible note shown when Engine-level Spoofing is enabled, explaining how to hide Chrome's debugging notification bar."
   },
   "debuggerBannerHelp_link": {
     "message": "How to hide the bar →",
-    "description": "Link to the GeoSpoof help page explaining how to hide Chrome's debugging notification bar."
+    "description": "Link to the MiLocation help page explaining how to hide Chrome's debugging notification bar."
   },
   "debuggerBannerHelp_closeAria": {
     "message": "Dismiss",
@@ -811,7 +811,7 @@
   },
   "randomize_caption": {
     "message": "Sites see a random point within this distance of the location you chose. New points are harder to recognize across visits, but give sites more samples to average.",
-    "description": "Caption at the bottom of the Randomize location screen. The random point is around the location the user chose in GeoSpoof, never their real location. Second sentence: the trade-off of 'Pick a new point' (a changing point is harder to recognize across visits, but a site that collects several can average them)."
+    "description": "Caption at the bottom of the Randomize location screen. The random point is around the location the user chose in MiLocation, never their real location. Second sentence: the trade-off of 'Pick a new point' (a changing point is harder to recognize across visits, but a site that collects several can average them)."
   },
   "advanced_precisionCadence": {
     "message": "Pick a new point",
@@ -847,7 +847,7 @@
   },
   "advanced_locale": {
     "message": "Reported Language",
-    "description": "Label for the control that sets the language websites see (navigator.language, Intl formats, and the Accept-Language header). Deliberately distinct from 'Language', which sets GeoSpoof's own popup language."
+    "description": "Label for the control that sets the language websites see (navigator.language, Intl formats, and the Accept-Language header). Deliberately distinct from 'Language', which sets MiLocation's own popup language."
   },
   "advanced_locale_off": {
     "message": "Off (use real)",
@@ -1083,7 +1083,7 @@
   },
   "siteLocation_notUsed": {
     "message": "Not used · Off in Sites",
-    "description": "Mark under a one-site entry on the Per-site locations screen, after a ⚠ drawn by the markup: the Sites tab's settings keep GeoSpoof off there, so its location isn't used. 'Sites' is the tab's name (tab_filters), inflected as the grammar needs and written the way the locale writes a UI element's name."
+    "description": "Mark under a one-site entry on the Per-site locations screen, after a ⚠ drawn by the markup: the Sites tab's settings keep MiLocation off there, so its location isn't used. 'Sites' is the tab's name (tab_filters), inflected as the grammar needs and written the way the locale writes a UI element's name."
   },
   "siteLocation_notUsedOn": {
     "message": "Not used on $SITES$ · Off in Sites",
@@ -1140,7 +1140,7 @@
     "description": "Accessible label of the Per-site locations list on the Filters tab. Same text as siteLocation_sectionTitle."
   },
   "siteLocation_proNote": {
-    "message": "🔒 Allowlist, Denylist and per-site locations are GeoSpoof Pro features. Upgrade in the GeoSpoof app.",
+    "message": "🔒 Allowlist, Denylist and per-site locations are MiLocation Pro features. Upgrade in the MiLocation app.",
     "description": "Shown on the Filters tab in place of the mode sentence for non-Pro iOS users, whose Allowlist, Denylist and per-site location controls are locked; the locked Per-site locations row is described by it. Must contain siteLocation_sectionTitle's words."
   },
   "details_siteLocation": {
@@ -1148,7 +1148,7 @@
     "description": "Details tab heading for the location Per-site locations applies to the current tab; the value names the place, the site, and the time zone. Shown only when one applies."
   },
   "badge_titleSiteLocation": {
-    "message": "GeoSpoof: $PLACE$ on $SITE$",
+    "message": "MiLocation: $PLACE$ on $SITE$",
     "placeholders": {
       "place": {
         "content": "$1",
@@ -1175,11 +1175,11 @@
   },
   "filters_typeGroup": {
     "message": "Site group",
-    "description": "Second line of an add-field suggestion for a site group, a named list of a service's sites (for example all of Google's sites), before its size. Glossary term shared with the GeoSpoof app."
+    "description": "Second line of an add-field suggestion for a site group, a named list of a service's sites (for example all of Google's sites), before its size. Glossary term shared with the MiLocation app."
   },
   "filters_typeLink": {
     "message": "List from a link",
-    "description": "Second line of the add-field suggestion for a pasted link: download a list of sites from an https link (a .txt, .list, .conf or .yaml file). Glossary term shared with the GeoSpoof app."
+    "description": "Second line of the add-field suggestion for a pasted link: download a list of sites from an https link (a .txt, .list, .conf or .yaml file). Glossary term shared with the MiLocation app."
   },
   "filters_errorExact": {
     "message": "Enter one address, like mail.example.com, without *",
@@ -1275,7 +1275,7 @@
         "example": "8"
       }
     },
-    "description": "Under a site group or list: how many of its rules GeoSpoof can't use (regular expressions and keywords). $COUNT$ is a formatted number."
+    "description": "Under a site group or list: how many of its rules MiLocation can't use (regular expressions and keywords). $COUNT$ is a formatted number."
   },
   "siteGroups_skippedOne": {
     "message": "1 rule skipped",
@@ -1283,7 +1283,7 @@
   },
   "siteGroups_unavailable": {
     "message": "Not available",
-    "description": "Under a site group or list whose data isn't on this device yet; it matches no sites until GeoSpoof downloads or rebuilds it."
+    "description": "Under a site group or list whose data isn't on this device yet; it matches no sites until MiLocation downloads or rebuilds it."
   },
   "siteGroups_linkFailed": {
     "message": "Couldn't update this list",
@@ -1356,11 +1356,11 @@
     "description": "Error when the list at a link couldn't be downloaded. Nothing is added."
   },
   "siteGroups_errorLinkEmpty": {
-    "message": "That list has no sites GeoSpoof can use.",
+    "message": "That list has no sites MiLocation can use.",
     "description": "Error when a downloaded list holds no usable sites (for example only regular expressions). Nothing is added."
   },
   "siteGroups_errorLinkTooLarge": {
-    "message": "That list is too large. GeoSpoof supports up to $MAX$ sites per list.",
+    "message": "That list is too large. MiLocation supports up to $MAX$ sites per list.",
     "placeholders": {
       "max": {
         "content": "$1",
@@ -1415,10 +1415,10 @@
   },
   "siteGroups_nameChina": {
     "message": "China sites",
-    "description": "Name of the featured site group of sites based in China. Glossary term shared with the GeoSpoof app."
+    "description": "Name of the featured site group of sites based in China. Glossary term shared with the MiLocation app."
   },
   "siteGroups_nameOutsideChina": {
     "message": "Sites outside China",
-    "description": "Name of the featured site group of sites not based in China. Glossary term shared with the GeoSpoof app."
+    "description": "Name of the featured site group of sites not based in China. Glossary term shared with the MiLocation app."
   }
 }

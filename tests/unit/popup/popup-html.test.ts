@@ -21,7 +21,7 @@ describe("Popup HTML Structure", () => {
 
     const title = document.querySelector(".header h1");
     expect(title).toBeTruthy();
-    expect(title!.textContent).toBe("GeoSpoof");
+    expect(title!.textContent).toBe("MiLocation");
 
     const statusBadge = document.getElementById("statusBadge");
     expect(statusBadge).toBeTruthy();
@@ -133,7 +133,7 @@ describe("Popup HTML Structure", () => {
     expect(rules.textContent?.trim()).toBe("Site rules");
     expect(rules.nextElementSibling).toBe(card);
     // THIS SITE then SITE RULES, both h2 under the page's h1: no skipped level.
-    expect(document.querySelector("h1")?.textContent?.trim()).toBe("GeoSpoof");
+    expect(document.querySelector("h1")?.textContent?.trim()).toBe("MiLocation");
     const headings = Array.from(
       document.getElementById("filtersRoot")!.querySelectorAll("h1, h2, h3, h4, h5, h6")
     ).filter(

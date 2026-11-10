@@ -8,51 +8,12 @@ import { isValidIANATimezone } from "@/shared/utils/type-guards";
 import { createLogger } from "@/shared/utils/debug-logger";
 import { getCacheKey } from "./geocoding";
 import { sessionGet, sessionSet, sessionClearNamespace } from "./session-cache";
-import { init as geoTzInit } from "browser-geo-tz";
-import geoTzData from "@/shared/geo-tz-data.json";
+import { createPackagedTimezoneLookup } from "./packaged-timezones";
 
 const logger = createLogger("BG");
 
-// Initialize browser-geo-tz once at module load so the data fetch promises
-// are reused across all calls — avoids re-fetching the data files on every lookup.
-//
-// Source the boundary data from cdn.geospoof.com — a CloudFront distribution in
-// front of a private S3 bucket, provisioned by the CDK app in cdk/ (see
-// cdk/lib/constructs/geo-tz-cdn.ts). The data is uploaded under a versioned
-// prefix (geo-tz/<version>/) with `immutable` cache headers and served with
-// proper 206 range support + CORS (Access-Control-Allow-Origin: *), so
-// browser-geo-tz range-fetches only the few hundred bytes each lookup needs.
-// Moving this off the main geospoof.com (Vercel) origin keeps the high-volume
-// per-install fetches off that bandwidth budget.
-//
-// NOT jsdelivr: it TRUNCATES the large `timezones.geojson.geo.dat`, serving
-// ~24.3 MB of the real ~29.3 MB file the npm package ships while the index still
-// points at byte offsets up to ~29.3 MB. Any shard past the truncation point
-// makes browser-geo-tz's range request return HTTP 416, the lookup silently
-// falls back to a longitude-bucket Etc/GMT zone, and because we (correctly)
-// refuse to persist Etc/GMT zones the timezone ends up null — so the extension
-// spoofs the location but leaves Date/Intl/Temporal/EXSLT reporting the user's
-// REAL zone. CloudFront serves the full, intact file (content-range total
-// 29259572) with consistent 206s.
-//
-// We use the full `timezones.geojson` (not the -1970 variant) for complete land
-// coverage, so coastal/boundary points resolve to a real IANA zone instead of a
-// fingerprintable Etc/GMT longitude bucket.
-//
-// The URL is VERSIONED by the geo-tz data version (src/shared/geo-tz-data.json,
-// the single source of truth). This is load-bearing: the `.index.json`
-// table-of-contents and the `.dat` it indexes are fetched separately and cached
-// `immutable` for a year. If we bumped the geo-tz data under a stable URL, a
-// returning user could pair a stale cached index with freshly-fetched `.dat`
-// byte ranges from the new file — mismatched offsets, silently wrong/garbage
-// lookups, no error. Versioning the path means new data lives at a new URL, so a
-// cached index and the `.dat` it indexes can never disagree. Both the CDK upload
-// (cdk/lib/util/geo-tz-data.ts) and the site build guard against version drift.
-const GEO_TZ_BASE = `https://cdn.geospoof.com/geo-tz/${geoTzData.version}`;
-const _geoTz = geoTzInit(
-  `${GEO_TZ_BASE}/timezones.geojson.geo.dat`,
-  `${GEO_TZ_BASE}/timezones.geojson.index.json`
-);
+// MiLocation fork: no remote geometry/index fetches, including on a fresh install.
+const _geoTz = createPackagedTimezoneLookup();
 
 /**
  * Clear the timezone cache (for testing)

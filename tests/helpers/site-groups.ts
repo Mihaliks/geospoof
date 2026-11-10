@@ -9,7 +9,7 @@ import type { StoredSiteGroup } from "@/background/site-groups-store";
 
 /** The bundled catalog's URL under the global `runtime.getURL` mock. */
 export const BUNDLED_URL = "moz-extension://test/site-groups/catalog.json";
-export const POINTER_URL = "https://cdn.geospoof.com/site-groups/v1/latest.json";
+export const POINTER_URL = "moz-extension://test/site-groups/v1/latest.json";
 
 /**
  * A small catalog. `google` has 3 usable rules (one tagged `@cn`, one full) and
@@ -164,6 +164,6 @@ export async function cdnRoutes(
   };
   return {
     [POINTER_URL]: (url) => responseAt(url, JSON.stringify(pointer)),
-    [`https://cdn.geospoof.com/${path}`]: (url) => responseAt(url, body),
+    [`moz-extension://test/${path}`]: (url) => responseAt(url, body),
   };
 }

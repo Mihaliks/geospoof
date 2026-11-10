@@ -18,7 +18,7 @@ coverage
 
 # Build output
 dist
-./build
+build/
 web-ext-artifacts
 .test-profile/
 
@@ -59,3 +59,8 @@ assets/Proton_Assets/*
 # The verified-upload private key lives outside the repo; never commit one.
 *.crx
 *.pem
+
+# Local Xcode state
+xcuserdata/
+*.xcuserstate
+DerivedData/
